@@ -16,6 +16,13 @@ dependencies:
   internet_connection_checker: ^3.0.1
   dio: ^5.9.0
   cloud_firestore: ^6.1.1
+  flutter_launcher_icons: ^0.14.4
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: 'assets/app-icon.png'
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +33,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/app-icon.png
