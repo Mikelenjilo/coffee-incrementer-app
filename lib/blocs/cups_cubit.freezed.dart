@@ -55,13 +55,14 @@ extension CupsStatePatterns on CupsState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Incrementing value)?  incrementing,TResult Function( _Loading value)?  loading,TResult Function( _Incremented value)?  incremented,TResult Function( _NoInternet value)?  noInternet,TResult Function( _Error value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Incrementing value)?  incrementing,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Incremented value)?  incremented,TResult Function( _NoInternet value)?  noInternet,TResult Function( _Error value)?  error,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Incrementing() when incrementing != null:
 return incrementing(_that);case _Loading() when loading != null:
-return loading(_that);case _Incremented() when incremented != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Incremented() when incremented != null:
 return incremented(_that);case _NoInternet() when noInternet != null:
 return noInternet(_that);case _Error() when error != null:
 return error(_that);case _:
@@ -82,13 +83,14 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Incrementing value)  incrementing,required TResult Function( _Loading value)  loading,required TResult Function( _Incremented value)  incremented,required TResult Function( _NoInternet value)  noInternet,required TResult Function( _Error value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Incrementing value)  incrementing,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Incremented value)  incremented,required TResult Function( _NoInternet value)  noInternet,required TResult Function( _Error value)  error,}){
 final _that = this;
 switch (_that) {
 case _Initial():
 return initial(_that);case _Incrementing():
 return incrementing(_that);case _Loading():
-return loading(_that);case _Incremented():
+return loading(_that);case _Loaded():
+return loaded(_that);case _Incremented():
 return incremented(_that);case _NoInternet():
 return noInternet(_that);case _Error():
 return error(_that);case _:
@@ -108,13 +110,14 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Incrementing value)?  incrementing,TResult? Function( _Loading value)?  loading,TResult? Function( _Incremented value)?  incremented,TResult? Function( _NoInternet value)?  noInternet,TResult? Function( _Error value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Incrementing value)?  incrementing,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Incremented value)?  incremented,TResult? Function( _NoInternet value)?  noInternet,TResult? Function( _Error value)?  error,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial(_that);case _Incrementing() when incrementing != null:
 return incrementing(_that);case _Loading() when loading != null:
-return loading(_that);case _Incremented() when incremented != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Incremented() when incremented != null:
 return incremented(_that);case _NoInternet() when noInternet != null:
 return noInternet(_that);case _Error() when error != null:
 return error(_that);case _:
@@ -134,12 +137,13 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  incrementing,TResult Function()?  loading,TResult Function()?  incremented,TResult Function()?  noInternet,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  incrementing,TResult Function()?  loading,TResult Function()?  loaded,TResult Function()?  incremented,TResult Function()?  noInternet,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Incrementing() when incrementing != null:
 return incrementing();case _Loading() when loading != null:
-return loading();case _Incremented() when incremented != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _Incremented() when incremented != null:
 return incremented();case _NoInternet() when noInternet != null:
 return noInternet();case _Error() when error != null:
 return error(_that.message);case _:
@@ -160,12 +164,13 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  incrementing,required TResult Function()  loading,required TResult Function()  incremented,required TResult Function()  noInternet,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  incrementing,required TResult Function()  loading,required TResult Function()  loaded,required TResult Function()  incremented,required TResult Function()  noInternet,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Incrementing():
 return incrementing();case _Loading():
-return loading();case _Incremented():
+return loading();case _Loaded():
+return loaded();case _Incremented():
 return incremented();case _NoInternet():
 return noInternet();case _Error():
 return error(_that.message);case _:
@@ -185,12 +190,13 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  incrementing,TResult? Function()?  loading,TResult? Function()?  incremented,TResult? Function()?  noInternet,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  incrementing,TResult? Function()?  loading,TResult? Function()?  loaded,TResult? Function()?  incremented,TResult? Function()?  noInternet,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Incrementing() when incrementing != null:
 return incrementing();case _Loading() when loading != null:
-return loading();case _Incremented() when incremented != null:
+return loading();case _Loaded() when loaded != null:
+return loaded();case _Incremented() when incremented != null:
 return incremented();case _NoInternet() when noInternet != null:
 return noInternet();case _Error() when error != null:
 return error(_that.message);case _:
@@ -289,6 +295,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'CupsState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Loaded implements CupsState {
+  const _Loaded();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'CupsState.loaded()';
 }
 
 
