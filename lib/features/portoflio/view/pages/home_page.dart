@@ -1,6 +1,7 @@
-import 'package:coffee_inctrementer/features/stats/blocs/cups_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/cups_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
