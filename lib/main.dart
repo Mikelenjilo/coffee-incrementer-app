@@ -1,10 +1,10 @@
-import 'package:coffee_inctrementer/blocs/cups_cubit.dart';
+import 'package:coffee_inctrementer/features/stats/blocs/cups_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/di/injection.dart';
 import 'firebase_options.dart';
-import 'view/pages/home_page.dart';
+import 'features/stats/view/pages/home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
