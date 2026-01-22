@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/cups_cubit.dart';
+import '../../blocs/cups/cups_cubit.dart';
+import '../../blocs/name/name_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _nameController = .new();
+
   @override
   void initState() {
     super.initState();
@@ -76,6 +79,22 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
+          ),
+          const SizedBox(height: 20),
+          Text('Full name'),
+          TextField(
+            controller: _nameController,
+            decoration: InputDecoration(hintText: 'Enter your name'),
+          ),
+          BlocBuilder<NameCubit, NameState>(
+            builder: (context, state) {
+              return ElevatedButton(
+                child: Text('Confirm'),
+                onPressed: () {
+                  context.read<NameCubit>().changeName(_nameController.text);
+                },
+              );
+            },
           ),
         ],
       ),

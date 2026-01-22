@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 abstract interface class PortfolioRemoteDataSource {
   Future<int> getCoffeeCount();
   Future<void> incrementCoffeeCount();
+  Future<void> changeName(String name);
 }
 
 @LazySingleton(as: PortfolioRemoteDataSource)
@@ -24,6 +25,13 @@ class PortfolioRemoteDataSourceFirebaseImpl
   Future<void> incrementCoffeeCount() async {
     await _firestore.collection('stats').doc('coffee').update({
       'count': FieldValue.increment(1),
+    });
+  }
+
+  @override
+  Future<void> changeName(String name) async {
+    await _firestore.collection('websites').doc('massi-dev.vercel.app').update({
+      'name': name,
     });
   }
 }

@@ -7,6 +7,7 @@ import '../datasources/portfolio_remote_datasource.dart';
 abstract interface class PortfolioRepo {
   Future<Either<Exception, int>> getCoffeeCount();
   Future<Either<Exception, Unit>> incrementCoffeeCount();
+  Future<Either<Exception, Unit>> changeName(String name);
 }
 
 @LazySingleton(as: PortfolioRepo)
@@ -25,7 +26,7 @@ class PortfolioRepoImpl implements PortfolioRepo {
       } else {
         return Left(Exception('No internet connection'));
       }
-    } catch (e) {
+    } on Exception catch (e) {
       return Left(Exception(e.toString()));
     }
   }
@@ -39,7 +40,21 @@ class PortfolioRepoImpl implements PortfolioRepo {
       } else {
         return Left(Exception('No internet connection'));
       }
-    } catch (e) {
+    } on Exception catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Exception, Unit>> changeName(String name) async {
+    try {
+      if (await _internetChecker.hasInternet) {
+        await _remoteDataSource.changeName(name);
+        return const Right(unit);
+      } else {
+        return Left(Exception('No internet connection'));
+      }
+    } on Exception catch (e) {
       return Left(Exception(e.toString()));
     }
   }

@@ -20,7 +20,8 @@ import '../../features/auth/blocs/auth_cubit.dart' as _i974;
 import '../../features/auth/datasources/auth_local_datasource.dart' as _i556;
 import '../../features/auth/datasources/auth_remote_datasource.dart' as _i573;
 import '../../features/auth/repositories/auth_repo.dart' as _i22;
-import '../../features/portoflio/blocs/cups_cubit.dart' as _i521;
+import '../../features/portoflio/blocs/cups/cups_cubit.dart' as _i246;
+import '../../features/portoflio/blocs/name/name_cubit.dart' as _i50;
 import '../../features/portoflio/datasources/portfolio_remote_datasource.dart'
     as _i116;
 import '../../features/portoflio/repositories/portfolio_repo.dart' as _i663;
@@ -74,8 +75,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i116.PortfolioRemoteDataSource>(),
       ),
     );
-    gh.factory<_i521.CupsCubit>(
-      () => _i521.CupsCubit(gh<_i663.PortfolioRepo>()),
+    gh.factory<_i246.CupsCubit>(
+      () => _i246.CupsCubit(gh<_i663.PortfolioRepo>()),
+    );
+    gh.lazySingleton<_i50.NameCubit>(
+      () => _i50.NameCubit(gh<_i663.PortfolioRepo>()),
     );
     return this;
   }
