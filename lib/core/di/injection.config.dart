@@ -15,9 +15,9 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i973;
 
-import '../../blocs/cups_cubit.dart' as _i632;
-import '../../datasources/portfolio_remote.dart' as _i56;
-import '../../repositories/portfolio_repo.dart' as _i759;
+import '../../features/stats/blocs/cups_cubit.dart' as _i632;
+import '../../features/stats/datasources/portfolio_remote.dart' as _i56;
+import '../../features/stats/repositories/portfolio_repo.dart' as _i759;
 import '../network/internet_checker.dart' as _i175;
 import 'app_module.dart' as _i460;
 

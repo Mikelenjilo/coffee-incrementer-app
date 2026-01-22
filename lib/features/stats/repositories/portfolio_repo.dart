@@ -1,8 +1,8 @@
-import 'package:coffee_inctrementer/datasources/portfolio_remote.dart';
+import 'package:coffee_inctrementer/features/stats/datasources/portfolio_remote.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../core/network/internet_checker.dart';
+import '../../../core/network/internet_checker.dart';
 
 abstract interface class PortfolioRepo {
   Future<Either<Exception, int>> getCoffeeCount();
