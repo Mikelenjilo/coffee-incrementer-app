@@ -3,11 +3,13 @@ import 'package:injectable/injectable.dart';
 
 import '../../../core/network/internet_checker.dart';
 import '../datasources/portfolio_remote_datasource.dart';
+import '../models/portfolio_info.dart';
 
 abstract interface class PortfolioRepo {
   Future<Either<Exception, int>> getCoffeeCount();
   Future<Either<Exception, Unit>> incrementCoffeeCount();
   Future<Either<Exception, Unit>> changeName(String name);
+  Future<Either<Exception, PortfolioInfo>> getPortfolioData();
 }
 
 @LazySingleton(as: PortfolioRepo)
@@ -51,6 +53,20 @@ class PortfolioRepoImpl implements PortfolioRepo {
       if (await _internetChecker.hasInternet) {
         await _remoteDataSource.changeName(name);
         return const Right(unit);
+      } else {
+        return Left(Exception('No internet connection'));
+      }
+    } on Exception catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Exception, PortfolioInfo>> getPortfolioData() async{
+    try {
+      if (await _internetChecker.hasInternet) {
+        final portfolio = await _remoteDataSource.getPortfolioData();
+        return Right(portfolio);
       } else {
         return Left(Exception('No internet connection'));
       }

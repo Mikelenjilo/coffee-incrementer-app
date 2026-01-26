@@ -25,78 +25,81 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Coffee Incrementer")),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          const Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                "Counter of coffees consumed",
-                style: TextStyle(fontSize: 24),
-                textAlign: TextAlign.center,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            const Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  "Counter of coffees consumed",
+                  style: TextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Center(
-            child: BlocBuilder<CupsCubit, CupsState>(
-              builder: (context, state) {
-                final cubit = context.read<CupsCubit>();
-                final isDisabled = state.maybeWhen(
-                  loading: () => true,
-                  incrementing: () => true,
-                  orElse: () => false,
-                );
+            const SizedBox(height: 20),
+            Center(
+              child: BlocBuilder<CupsCubit, CupsState>(
+                builder: (context, state) {
+                  final cubit = context.read<CupsCubit>();
+                  final isDisabled = state.maybeWhen(
+                    loading: () => true,
+                    incrementing: () => true,
+                    orElse: () => false,
+                  );
 
-                return Column(
-                  children: [
-                    state.maybeWhen(
-                      loading: () => const CircularProgressIndicator(),
-                      orElse: () => Text(
-                        "${cubit.count} cups",
-                        style: const TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
+                  return Column(
+                    children: [
+                      state.maybeWhen(
+                        loading: () => const CircularProgressIndicator(),
+                        orElse: () => Text(
+                          "${cubit.count} cups",
+                          style: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
 
-                    const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                    state.maybeWhen(
-                      incrementing: () => const CircularProgressIndicator(),
-                      orElse: () => ElevatedButton(
-                        onPressed: isDisabled
-                            ? null
-                            : () {
-                                cubit.increment();
-                              },
-                        child: const Text("Add Coffee"),
+                      state.maybeWhen(
+                        incrementing: () => const CircularProgressIndicator(),
+                        orElse: () => ElevatedButton(
+                          onPressed: isDisabled
+                              ? null
+                              : () {
+                                  cubit.increment();
+                                },
+                          child: const Text("Add Coffee"),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text('Full name'),
+            TextField(
+              controller: _nameController,
+              decoration: InputDecoration(hintText: 'Enter your name'),
+            ),
+            BlocBuilder<NameCubit, NameState>(
+              builder: (context, state) {
+                return ElevatedButton(
+                  child: Text('Confirm'),
+                  onPressed: () {
+                    context.read<NameCubit>().changeName(_nameController.text);
+                  },
                 );
               },
             ),
-          ),
-          const SizedBox(height: 20),
-          Text('Full name'),
-          TextField(
-            controller: _nameController,
-            decoration: InputDecoration(hintText: 'Enter your name'),
-          ),
-          BlocBuilder<NameCubit, NameState>(
-            builder: (context, state) {
-              return ElevatedButton(
-                child: Text('Confirm'),
-                onPressed: () {
-                  context.read<NameCubit>().changeName(_nameController.text);
-                },
-              );
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

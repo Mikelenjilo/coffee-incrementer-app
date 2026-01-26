@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffee_inctrementer/features/portoflio/models/portfolio_info.dart';
 import 'package:injectable/injectable.dart';
 
 abstract interface class PortfolioRemoteDataSource {
   Future<int> getCoffeeCount();
   Future<void> incrementCoffeeCount();
   Future<void> changeName(String name);
+  Future<PortfolioInfo> getPortfolioData();
 }
 
 @LazySingleton(as: PortfolioRemoteDataSource)
@@ -33,5 +35,12 @@ class PortfolioRemoteDataSourceFirebaseImpl
     await _firestore.collection('websites').doc('massi-dev.vercel.app').update({
       'name': name,
     });
+  }
+
+  @override
+  Future<PortfolioInfo> getPortfolioData() async {
+    return await _firestore.collection('websites').doc('massi-dev.vercel.app').get().then((e) =>
+       PortfolioInfo.fromJson(e.data()!)
+    );
   }
 }

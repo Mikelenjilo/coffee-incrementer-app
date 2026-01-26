@@ -40,13 +40,13 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     controller: _passwordController,
                     keyboardType: TextInputType.visiblePassword,
-                    obscureText: isVisible,
+                    obscureText: !isVisible,
                     decoration: InputDecoration(
                       hintText: "Password",
                       border: OutlineInputBorder(),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          isVisible ? Icons.visibility : Icons.visibility_off,
+                          !isVisible ? Icons.visibility : Icons.visibility_off,
                         ),
                         onPressed: () {
                           setState(() {
