@@ -83,20 +83,27 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 20),
-            Text('Full name'),
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(hintText: 'Enter your name'),
-            ),
-            BlocBuilder<NameCubit, NameState>(
-              builder: (context, state) {
-                return ElevatedButton(
-                  child: Text('Confirm'),
-                  onPressed: () {
-                    context.read<NameCubit>().changeName(_nameController.text);
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Full name'),
+                TextField(
+                  controller: _nameController,
+                  decoration: InputDecoration(hintText: 'Enter your name'),
+                ),
+                BlocBuilder<NameCubit, NameState>(
+                  builder: (context, state) {
+                    return Center(
+                      child: ElevatedButton(
+                        child: Text('Confirm'),
+                        onPressed: () {
+                          context.read<NameCubit>().changeName(_nameController.text);
+                        },
+                      ),
+                    );
                   },
-                );
-              },
+                ),
+              ],
             ),
           ],
         ),
